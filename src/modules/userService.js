@@ -1,20 +1,68 @@
 export class UserService {
-  _users = [];
-
-  get users() {
-    return this._users;
-  };
-
-  set users(users) {
-    this._users = users;
-  };
-
-  logger() {
-    console.log(this.users);
-  };
-
   getUsers() {
     return fetch('http://localhost:4545/users')
+      .then(res => res.json());
+  };
+
+  addUser(user) {
+    return fetch('http://localhost:4545/users', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json; charset=UTF-8'
+      },
+      body: JSON.stringify(user)
+    })
+      .then(res => res.json());
+  };
+
+  removeUser(id) {
+    return fetch(`http://localhost:4545/users/${id}`, {
+      method: 'DELETE'
+    })
+      .then(res => res.json());
+  };
+
+  changeUser(id, data) {
+    return fetch(`http://localhost:4545/users/${id}`, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json; charset=UTF-8'
+      },
+      body: JSON.stringify(data)
+    })
+      .then(res => res.json());
+  };
+
+  getUser(id) {
+    return fetch(`http://localhost:4545/users/${id}`)
+      .then(res => res.json());
+  };
+
+  editUser(id, user) {
+    return fetch(`http://localhost:4545/users/${id}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json; charset=UTF-8'
+      },
+      body: JSON.stringify(user)
+    })
+      .then(res => res.json());
+  };
+
+  filterUsers(filterOption) {
+    return fetch(`http://localhost:4545/users/?${filterOption}=true`)
+      .then(res => res.json());
+  };
+
+  getSortUsers(sortOption) {
+    //return fetch(`http://localhost:4545/users/?_sort=${sortOption.name}&_order=${sortOption.value}`)
+    return fetch(`http://localhost:4545/users/?_sort=${sortOption}`)
+      .then(res => res.json());
+  };
+
+  getSearchUsers(str) {
+    //return fetch(`http://localhost:4545/users/?name_like=${str}`)
+    return fetch(`http://localhost:4545/users/?name:contains=${str}`)
       .then(res => res.json());
   };
 
