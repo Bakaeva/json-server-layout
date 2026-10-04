@@ -18,9 +18,6 @@ export const editUsers = () => {
         childrenInput.checked = user.children;
 
         form.dataset.key = id;
-
-        // userService.getUsers().then(users =>
-        //   render(users));
       });
     };
   });

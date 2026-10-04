@@ -1,14 +1,14 @@
 {
   "users": [
     {
-      "id": 1,
+      "id": "1",
       "name": "Mark",
       "email": "otto@gmail.com",
       "children": true,
       "permissions": false
     },
     {
-      "id": 2,
+      "id": "2",
       "name": "Jacob",
       "email": "thornton@gmail.com",
       "children": false,
@@ -19,7 +19,7 @@
       "email": "aalex@mail.ru",
       "children": false,
       "permissions": false,
-      "id": 3
+      "id": "3"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"
